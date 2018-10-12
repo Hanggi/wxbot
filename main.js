@@ -148,19 +148,22 @@ try {
             createWindow();
         }
     });
-    var mainWindow_1 = null;
-    var isAlreadyRunning = electron_1.app.makeSingleInstance(function () {
-        if (mainWindow_1) {
-            if (mainWindow_1.isMinimized()) {
-                mainWindow_1.restore();
-            }
-            mainWindow_1.show();
-        }
-    });
-    if (isAlreadyRunning) {
-        alert("请勿打开多个");
-        electron_1.app.quit();
-    }
+    // let mainWindow = null;
+    //
+    // const isAlreadyRunning = app.makeSingleInstance(() => {
+    // 	if (mainWindow) {
+    // 		if (mainWindow.isMinimized()) {
+    // 			mainWindow.restore();
+    // 		}
+    //
+    // 		mainWindow.show();
+    // 	}
+    // });
+    //
+    // if (isAlreadyRunning) {
+    // 	alert("请勿打开多个")
+    // 	app.quit();
+    // }
 }
 catch (e) {
     // Catch Error
