@@ -12,9 +12,12 @@ import {AppRoutingModule} from "./app-routing.module";
 import {LoginComponent} from "./login/login.component";
 import {MainComponent} from "./main/main.component";
 
+
+import {WebviewDirective} from "./webview/webview.directive";
+
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, MainComponent
+    AppComponent, LoginComponent, MainComponent, WebviewDirective
   ],
   imports: [
     BrowserModule, HttpClientModule, MaterialModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, RouterModule, AppRoutingModule
