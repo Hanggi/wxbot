@@ -1,0 +1,82 @@
+{
+	"name": "Davinqi",
+	"version": "1.3.1",
+	"author": "Davinqi inc.",
+	"description": "Davinqi multiple exchange",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"electron:tsc": "tsc main.ts",
+		"darwin": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=./logo.icns --prune=true --out=release-builds --ignore=ng/ --ignore=build/",
+		"win64": "electron-packager . --overwrite --platform=win32 --arch=x64 --icon=./logo.icns --prune=true --out=release-builds --ignore=ng/ --ignore=build/",
+		"win32": "electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=./logo.icns --prune=true --out=release-builds --ignore=ng/ --ignore=build/",
+		"ng": "cd ./ng && npm start",
+		"dist": "cd ./ng && npm run dist",
+		"build": "electron-builder"
+	},
+	"repository": "https://github.com/electron/electron-quick-start",
+	"build": {
+		"copyright": "Davinqi-同步挖矿机器人",
+		"productName": "Davinqi",
+		"appId": "com.electron.davinqi",
+		"directories": {
+			"output": "build"
+		},
+		"publish": [
+			{
+				"provider": "github",
+				"host": "github.com",
+				"repo": "Davinqi-wk",
+				"owner": "DavinqiRobot"
+			}
+		],
+		"files": [
+			"**/*",
+			"!node_modules/async${/*}",
+			"!ng/",
+			"!build/",
+			"!release-builds"
+		],
+		"mac": {
+			"icon": "logo.icns"
+		},
+		"win": {
+			"icon": "logo.ico",
+			"target": [
+				{
+					"target": "nsis",
+					"arch": [
+						"x64",
+						"ia32"
+					]
+				}
+			]
+		}
+	},
+	"keywords": [
+		"Electron",
+		"quick",
+		"start",
+		"tutorial",
+		"demo"
+	],
+	"license": "CC0-1.0",
+	"devDependencies": {
+		"electron": "^2.0.4",
+		"electron-builder": "^20.20.4",
+		"electron-reload": "^1.2.5",
+		"electron-winstaller": "^2.6.4",
+		"update-electron-app": "^1.3.0"
+	},
+	"dependencies": {
+		"ccxt": "^1.16.9",
+		"crypto-js": "^3.1.9-1",
+		"electron-log": "^2.2.16",
+		"electron-store": "^2.0.0",
+		"electron-updater": "^2.23.3",
+		"getmac": "^1.4.3",
+		"moment": "^2.22.2",
+		"request": "^2.87.0",
+		"request-promise": "^4.2.2"
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "/v1/*": {
+        "target": "https://api.fcoin.com",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

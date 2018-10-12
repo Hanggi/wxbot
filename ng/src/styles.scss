@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./app/css/material-wrap.scss";
+
+* {padding:0;margin:0;box-sizing:border-box;font-family:"微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif }
+html, body {height:100%;}

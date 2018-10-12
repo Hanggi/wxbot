@@ -1,0 +1,42 @@
+<div class="lar">
+	<div class="big-logo">
+		<img src="assets/logo.png" style="width:50px;" alt="">
+		<span>Davinqi - 多平台同步挖矿机器人</span>
+	</div>
+	<div class="login-wrap">
+		<form action="" #form="ngForm" (ngSubmit)="login(form)">
+
+			<div class="switch">
+				<span>登录</span> | <span class="register" (click)="registerLink()">注册</span>
+
+			</div>
+			<div class="form-wrap">
+				<mat-form-field class="mw">
+					<input matInput name="email" #emailText="ngModel" [(ngModel)]="email" placeholder="邮箱" type="text">
+				</mat-form-field>
+
+				<mat-form-field class="mw">
+					<input matInput name="pass" #passText="ngModel" [(ngModel)]="pass" placeholder="密码" type="password">
+				</mat-form-field>
+
+				<button type="submit" class="submit">登 录</button>
+				<br>
+				<button class="binding" type="button" (click)="doBinding()">绑定当前设备</button>
+				<br>
+
+				<button class="trial" type="button" (click)="checkTrial()">试用1小时</button>
+			</div>
+			<div style="padding:30px 0;" class="banner-wrap">
+				<div class="banner">
+					<img src="assets/coinpark_logo.jpg" alt="" class="logo">
+				</div>
+				<div class="banner">
+					<img src="assets/coinex_logo.jpg" alt="" class="logo">
+				</div>
+				<div class="banner">
+					<img src="assets/coinbig_logo.svg" alt="" class="logo">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
