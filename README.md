@@ -1,3 +1,2 @@
 # Quantification
 
-# wxbot
