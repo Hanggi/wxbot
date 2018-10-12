@@ -1,8 +1,8 @@
 {
-	"name": "Davinqi",
-	"version": "1.3.1",
+	"name": "wxrobot",
+	"version": "1.0.0",
 	"author": "Davinqi inc.",
-	"description": "Davinqi multiple exchange",
+	"description": "Davinqi weixin robot",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",
@@ -16,8 +16,8 @@
 	},
 	"repository": "https://github.com/electron/electron-quick-start",
 	"build": {
-		"copyright": "Davinqi-同步挖矿机器人",
-		"productName": "Davinqi",
+		"copyright": "Davinqi-微信机器人",
+		"productName": "WX robot",
 		"appId": "com.electron.davinqi",
 		"directories": {
 			"output": "build"
@@ -62,7 +62,6 @@
 	],
 	"license": "CC0-1.0",
 	"devDependencies": {
-		"electron": "^3.0.4",
 		"electron-builder": "^20.28.4",
 		"electron-reload": "^1.2.5",
 		"electron-winstaller": "^2.7.0",
@@ -71,12 +70,14 @@
 	"dependencies": {
 		"ccxt": "^1.17.376",
 		"crypto-js": "^3.1.9-1",
+		"electron": "^2.0.11",
 		"electron-log": "^2.2.17",
 		"electron-store": "^2.0.0",
 		"electron-updater": "^3.1.2",
 		"getmac": "^1.4.6",
 		"moment": "^2.22.2",
 		"request": "^2.88.0",
-		"request-promise": "^4.2.2"
+		"request-promise": "^4.2.2",
+		"technicalindicators": "^2.0.3"
 	}
 }

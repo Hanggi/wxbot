@@ -8,16 +8,24 @@ import * as fs from 'fs';
 import {HttpClient} from "@angular/common/http";
 
 
+const ccxt = window.require('ccxt');
 const getmac = window.require('getmac');
+
 
 @Injectable()
 export class ElectronService {
 
+	// electron and system
 	ipcRenderer: typeof ipcRenderer;
 	webFrame: typeof webFrame;
 	remote: typeof remote;
 	childProcess: typeof childProcess;
 	fs: typeof fs;
+
+	// ccxt
+	huobipro = new ccxt.huobipro();
+
+	moment = window.require('moment');
 
 	showLogin = true;
 	trial = false;

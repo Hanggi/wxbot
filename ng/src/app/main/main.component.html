@@ -2,9 +2,13 @@
 	头部
 </header>
 <div class="main">
-	主体
+	<webview id="foo" #webviewModel *ngIf="webUrl" attr.src="{{webUrl}}" style="display:inline-flex; width:100%;height:85%;"></webview>
+
+	<button mat-button color="accent" class="mw strategy-button" (click)="start()" [disabled]="isRunning">
+		开始
+	</button>
 </div>
 
 
 
-<webview id="foo" #webviewModel *ngIf="webUrl" attr.src="{{webUrl}}" style="display:inline-flex; width:100%;height:85%;"></webview>
+

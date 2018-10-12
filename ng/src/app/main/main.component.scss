@@ -1,103 +1,12 @@
 $item-width: 320px;
 
 
-.main {display:flex;align-item:flex-start;flex-wrap:wrap;
-	.ex-wrap {display:block;margin:10px 20px;
+.main {display:flex;align-item:flex-start;flex-wrap:wrap;height:700px;
 
-		.ex-item {border: 1px solid #ddd;border-radius:5px;padding:10px 15px;font-size:14px;width:$item-width;box-shadow:1px 1px 1px rgba(0, 0, 0, 0.15);
-			//display:flex;flex-direction:row;justify-content: space-between;
 
-			.banner {height:80px;background-size:cover;background-position:center;
-				margin-bottom:5px;position:relative;overflow:hidden;border-right:1px solid #eee;
-				.logo {height:80px;background-size:contain;background-position:center;background-repeat: no-repeat;
-
-					img {
-						display: block;
-						width: $item-width;
-					}
-				}
-				&.contain {background-size:contain;background-repeat:no-repeat;}
-				.key {height:40px;line-height:30px;}
-			}
-
-			.balance-wrap {flex-grow:1;margin:0 10px;position:relative;max-height:160px;overflow:hidden;overflow-y:scroll;
-
-			}
-			.verbose {max-height:200px;position:relative;overflow:hidden;overflow-y:scroll;}
-
-			.control {width:240px;}
-
-			&.fcoin {
-				.key-button {display:inline-block;width:90px;}
-			}
-
-			table {border-spacing:0;
-				tr {border:1px solid #333;
-					td {border-bottom:1px solid #eee;padding:5px 0;}
-				}
-			}
-
-			.strategy-button {width:100%;}
-
-			.start {width:100%;}
-
-		}
-	}
 }
 
 
 .clear{ clear:both}
 
 hr {margin:10px 0;border:1px solid #eee}
-
-
-//$item-width: 320px;
-//
-//header {height:60px;margin-bottom:10px;box-shadow:1px 1px 1px rgba(0, 0, 0, 0.15);}
-//
-//.main {display:flex;flex-direction:column;align-item:flex-start;flex-wrap:wrap;
-//	.ex-wrap {display:block;margin:10px 20px;
-//
-//		.ex-item {border: 1px solid #aaa;border-radius:5px;padding:10px 15px;font-size:14px;display:flex;flex-direction:row;justify-content: space-between;
-//
-//			.banner {height:160px;width:220px;margin-bottom:5px;position:relative;overflow:hidden;float:left;border-right:1px solid #eee;
-//				.logo {height:80px;width:220px;background-size:cover;background-position:center;
-//
-//					img {
-//						display: block;
-//						width: $item-width;
-//					}
-//				}
-//				.key {height:40px;line-height:30px;}
-//			}
-//
-//			.balance-wrap {flex-grow:1;margin:0 10px;position:relative;max-height:160px;overflow:hidden;overflow-y:scroll;
-//
-//			}
-//
-//			.control {width:240px;}
-//
-//			&.fcoin {
-//				.key-button {display:inline-block;width:90px;}
-//			}
-//
-//			table {border-spacing:0;
-//				tr {border:1px solid #333;
-//					td {border-bottom:1px solid #eee;padding:5px 0;}
-//				}
-//			}
-//
-//			.strategy-button {width:100%;}
-//
-//			.start {width:100%;}
-//
-//		}
-//	}
-//}
-//
-//.top-logo {float:left;display:flex;align-items:center;}
-//
-//.link {float:right;font-size:14px;
-//	input {padding:5px;width:300px;border-radius:5px;border:1px solid rgba(0, 0, 0, 0.15)}
-//}
-//.clear{ clear:both}
