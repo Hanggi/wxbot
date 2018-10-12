@@ -54,12 +54,12 @@ export class MainComponent implements OnInit{
 		// console.log(self.G.moment().format('llll'))
 
 		let output =
-			`\`火币检测：BTC/USDT
-当前ma5: ${res.ma5_value}
-当前ma7: ${res.ma7_value}
+			`\`火币检测：BTC/USDT 30min
+当前ma5:  ${res.ma5_value}
+当前ma7:  ${res.ma7_value}
 当前ma10: ${res.ma10_value}
 当前ma30: ${res.ma30_value}
-当前价格： ${res.closes_value}
+当前价格:  ${res.closes_value}
 			
 时间：${self.G.moment().format('llll')}
 策略来源: Davinqi量化策略
