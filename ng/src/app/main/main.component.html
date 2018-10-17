@@ -1,12 +1,25 @@
 <header>
-	头部
+    头部
 </header>
 <div class="main">
-	<webview id="foo" #webviewModel *ngIf="webUrl" attr.src="{{webUrl}}" style="display:inline-flex; width:100%;height:85%;"></webview>
+    <webview id="foo" #webviewModel *ngIf="webUrl" attr.src="{{webUrl}}" style="display:inline-flex; width:100%;height:85%;"></webview>
 
-	<button mat-button color="accent" class="mw strategy-button" (click)="start()" [disabled]="isRunning">
-		开始
-	</button>
+    <button mat-button color="accent" class="mw strategy-button" (click)="start()" [disabled]="isRunning">
+        开始
+    </button>
+
+    <button mat-button color="warn" class="mw strategy-button" (click)="stop()" [disabled]="isRunning">
+        stop
+    </button>
+
+    <div>
+        <ul>
+            <li *ngFor="let item of price_arr">
+                {{item.name}}: {{item.current}}
+            </li>
+        </ul>
+        <p>{{last_update}}</p>
+    </div>
 </div>
 
 

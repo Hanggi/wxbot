@@ -47,25 +47,82 @@ export class MainComponent implements OnInit{
 
 	}
 
+	tt = null;
+	ma7_30_symbol = null;
+	// ma30_symbol = null;
+
 	public async start() {
 		const self = this;
-		let res = await self.test();
-		console.log(self.G.moment.locale('zh-cn'));
-		// console.log(self.G.moment().format('llll'))
 
-		let output =
-			`\`火币检测：BTC/USDT 30min
-当前ma5:  ${res.ma5_value}
-当前ma7:  ${res.ma7_value}
-当前ma10: ${res.ma10_value}
-当前ma30: ${res.ma30_value}
-当前价格:  ${res.closes_value}
-			
+        self.loop("开始检测活动！\n");
+		self.tt = setInterval(function () {
+            self.loop('');
+        }, 1000 * 30);
+
+	}
+	public async stop() {
+	    const self = this;
+	    clearInterval(self.tt);
+    }
+
+    price_arr = [];
+	last_update;
+	private async loop(title) {
+	    let self = this;
+        let res = await self.test();
+        console.log(self.G.moment.locale('zh-cn'));
+        // console.log(self.G.moment().format('llll'))
+        if (!self.ma7_30_symbol) {
+            if (res.ma7.current > res.ma30.current) {
+                self.ma7_30_symbol = 1;
+            } else {
+                self.ma7_30_symbol = -1
+            }
+        }
+
+        let suggestion = '';
+        let signal = '';
+        if (self.ma7_30_symbol > 0 && (res.ma7.current < res.ma30.current)) {
+            suggestion = '看空卖出（卖出开空）';
+            signal = '下穿';
+            self.ma7_30_symbol = -1;
+            send(null)
+        }
+        if (self.ma7_30_symbol < 0 && (res.ma7.current > res.ma30.current)) {
+            suggestion = '看多买进（买入开多）';
+            signal = '上穿';
+            self.ma7_30_symbol = 1;
+            send(null)
+        }
+
+        if (title) {
+            send(title);
+        }
+
+        function send(title) {
+            let output =
+`\`
+交易对：火币 BTC/USDT 30min
+现价: ${res.closes.current}
+出现信号：${signal}
+建议方向：${suggestion}
+类型：现货/期货
 时间：${self.G.moment().format('llll')}
-策略来源: Davinqi量化策略
-		\``;
+免责声明：仅提供信号提醒，买卖操作，盈亏自负
+来源：Davinqj量化   
+\``;
 
-		let code = `
+            if (title) {
+                output =
+`\`@所有人
+开始运行！
+交易对：火币 BTC/USDT 30min
+现价: ${res.closes.current}
+开启时间：${self.G.moment().format('llll')}
+\``;
+            }
+
+            let code = `
 			input = document.querySelector('#editArea')
 			input.innerText = ${output}
 			
@@ -76,19 +133,60 @@ export class MainComponent implements OnInit{
 			input.dispatchEvent(event);
 			document.querySelector('.btn.btn_send').click()
 				`;
-		// code = ``;
-		console.log(code)
-		this.content.executeJavaScript(code, false, result => {
-			console.log('webContents exec callback: ' + result);
-			if (result == -1) {
-				// self.tips("超出价格规定范围，暂不挂单")
-			}
-		}).then(result => {
-			console.log('webContents exec then: ' + result);
-		}, d => {
-			console.log(d);
-		});
-	}
+            // code = ``;
+            console.log(code);
+            self.content.executeJavaScript(code, false, result => {
+                console.log('webContents exec callback: ' + result);
+                if (result == -1) {
+                    // self.tips("超出价格规定范围，暂不挂单")
+                }
+            }).then(result => {
+                console.log('webContents exec then: ' + result);
+            }, d => {
+                console.log(d);
+            });
+
+        }
+
+        self.last_update = self.G.moment().format('llll')
+        self.price_arr = [];
+        for (let item in res) {
+            console.log(item);
+            self.price_arr.push({
+                name: item,
+                current: res[item].current,
+                arr: res[item].arr
+            })
+        }
+        // console.log(price_arr);
+        self.price_arr = self.price_arr.sort((a, b) => {
+            return a.current > b.current ? -1 : 1;
+        });
+        console.log(self.price_arr);
+        //
+        // let str = '';
+        // for (let item of price_arr) {
+        //     str += `当前${item.name}：${item.current}\n`
+        // }
+        // console.log(str);
+
+        // 当前ma5:  ${res.ma5.current}
+        //     当前ma7:  ${res.ma7.current}
+        //         当前ma10: ${res.ma10.current}
+        //             当前ma30: ${res.ma30.current}
+        //                 当前价格:  ${res.closes.current}
+
+
+//         let output2 =
+//             `\`${title}火币检测：BTC/USDT 30min （按当前价格排序）
+//
+// ${str}
+// 时间：${self.G.moment().format('llll')}
+// 策略来源: Davinqi量化策略
+// 		\``;
+
+
+    }
 
 	// huobipro = ccxt.huobipro();
 
@@ -114,17 +212,27 @@ export class MainComponent implements OnInit{
 		console.log(ohlcv);
 
 		return {
-			ma5: ma5,
-			ma5_value: ma5[ma5.length - 1].toFixed(4),
-			ma7: ma7,
-			ma7_value: ma7[ma7.length - 1].toFixed(4),
-			ma10: ma10,
-			ma10_value: ma10[ma10.length - 1].toFixed(4),
-			ma30: ma30,
-			ma30_value: ma30[ma30.length - 1].toFixed(4),
-			closes: closes,
-			closes_value: closes[closes.length - 1].toFixed(4),
-		}
+			ma5: {
+			    arr: ma5,
+                current: ma5[ma5.length - 1].toFixed(4)
+            },
+			ma7: {
+			    arr: ma7,
+                current: ma7[ma7.length - 1].toFixed(4)
+            },
+			ma10: {
+			    arr: ma10,
+                current: ma10[ma10.length - 1].toFixed(4),
+            },
+			ma30: {
+			    arr: ma30,
+                current: ma30[ma30.length - 1].toFixed(4)
+            },
+			closes: {
+			    arr: closes,
+                current: closes[closes.length - 1].toFixed(4)
+            },
+		};
 	}
 
 	ngOnInit () {
